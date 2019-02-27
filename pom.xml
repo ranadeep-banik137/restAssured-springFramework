@@ -18,6 +18,9 @@
     <testNg-version>6.9.13.6</testNg-version>
     <rest-assured-version>3.0.0</rest-assured-version>
     <org.apache.commons-version>3.0</org.apache.commons-version>
+    <resource-file>src/test/resources</resource-file>
+    <test-runner>runner/testRunner</test-runner>
+    <api>default</api>
   </properties>
 
   <dependencies>
@@ -101,9 +104,9 @@
 	      		<fork>true</fork>
 	      		<source>${java-version}</source>
 	          	<target>${java-version}</target>
-	      		<!-- <suiteXmlFiles>
-	      			<suiteXmlFile>${runner-files-basepath}/${execution-xml}.xml</suiteXmlFile>
-	      		</suiteXmlFiles> -->
+	      		<suiteXmlFiles>
+	      			<suiteXmlFile>${resource-file}/${api}/${test-runner}.xml</suiteXmlFile>
+	      		</suiteXmlFiles>
 	      	</configuration>
       </plugin>
   	</plugins>

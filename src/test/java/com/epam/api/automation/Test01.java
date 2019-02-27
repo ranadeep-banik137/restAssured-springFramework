@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.epam.api.automation.context.ContextInitiator;
+import com.jayway.jsonpath.DocumentContext;
 import com.epam.api.automation.configurations.URIParameters.PathParams;
 import com.epam.api.automation.configurations.URIParameters.QueryParams;
 
@@ -88,6 +89,16 @@ public class Test01 {
 	
 	@Test
 	private void testByChangingJsonRequestInRuntime() {
+		DocumentContext context = restJob.getJsonParser().parseWithFileNameInClassPath("request.json");
+		context.set("$.name", "Ranadeep Banik");
+		context.set("$.files[0].details", RandomStringUtils.randomAlphanumeric(50));
+		context.set("$.files[1].details", RandomStringUtils.randomAlphanumeric(50));
+		context.set("$.files[2].details", RandomStringUtils.randomAlphanumeric(50));
+		Object object = context.read("$.files[0]");
+		context.add("$.files", object);
+		context.set("$.files[3].profileName", RandomStringUtils.randomAlphabetic(10).toUpperCase());
+		context.put("$", "Contact", "+91-7378332802");
+		restJob.getJsonParser().setContext(context);
 		RestAssured.given()
 			.contentType(ContentType.JSON)
 			.headers(restJob.getHeaders().getHeaderMapper())
@@ -95,7 +106,7 @@ public class Test01 {
 			.queryParams(restJob.getUriParameters().getQueryParams().getQueryParamMapper())
 			.accept(ContentType.JSON)
 			//.authentication().basic("ranadeep123", "rana#123")
-			.body(restJob.getJsonParser().parseWithFileNameInClassPath("request.json").jsonString())
+			.body(restJob.getJsonParser().getContext().jsonString())
 			.log().all()
 			.when()
 			.post()

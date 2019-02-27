@@ -1,0 +1,101 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "Name",
+    "Age",
+    "Id",
+    "File",
+    "Proof"
+  ],
+  "properties": {
+    "Name": {
+      "$id": "#/properties/Name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "Allen Josh"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "Age": {
+      "$id": "#/properties/Age",
+      "type": "integer",
+      "title": "The Age Schema",
+      "default": 0,
+      "examples": [
+        21
+      ]
+    },
+    "Id": {
+      "$id": "#/properties/Id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "VATF21548X"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "File": {
+      "$id": "#/properties/File",
+      "type": "array",
+      "title": "The File Schema",
+      "items": {
+        "$id": "#/properties/File/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "ProfileName",
+          "ProfileId",
+          "Details"
+        ],
+        "properties": {
+          "ProfileName": {
+            "$id": "#/properties/File/items/properties/ProfileName",
+            "type": "string",
+            "title": "The Profilename Schema",
+            "default": "",
+            "examples": [
+              "ENGX"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "ProfileId": {
+            "$id": "#/properties/File/items/properties/ProfileId",
+            "type": "integer",
+            "title": "The Profileid Schema",
+            "default": 0,
+            "examples": [
+              2154
+            ]
+          },
+          "Details": {
+            "$id": "#/properties/File/items/properties/Details",
+            "type": "string",
+            "title": "The Details Schema",
+            "default": "",
+            "examples": [
+              "It is a Platform for Learning"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "Proof": {
+      "$id": "#/properties/Proof",
+      "type": "string",
+      "title": "The Proof Schema",
+      "default": "",
+      "examples": [
+        "Identity"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

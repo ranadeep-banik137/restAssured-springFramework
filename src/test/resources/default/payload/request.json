@@ -1,0 +1,23 @@
+{
+	"name" : "Allen Josh",
+	"age" : 21,
+	"id" : "VATF21548X",
+	"files" : [
+	{
+		"profileName" : "ENGX",
+		"profileId" : 2154,
+		"details" : "It is a Platform for Learning"
+	},
+	{
+		"profileName" : "Bootcamp",
+		"profileId" : 2176,
+		"details" : "It is a Platform for Learning"
+	},
+	{
+		"profileName" : "Cassia",
+		"profileId" : 2854,
+		"details" : "It is a Platform for Learning"
+	}
+	],
+	"proof" : "Identity"
+}

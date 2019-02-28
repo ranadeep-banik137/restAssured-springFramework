@@ -37,6 +37,10 @@ public class ConfigUtil {
 		setConfig(ConfigFactory.load(api.getApiName() + SEPARATOR + "reference.conf"));
 	}
 	
+	public Config loadConfig(final String path) {
+		return ConfigFactory.load(path);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> fetchMappedData(final String... sequentialPaths) {
 		Iterator<String> iteratorObject = Arrays.asList(sequentialPaths).iterator();
@@ -72,5 +76,13 @@ public class ConfigUtil {
 			temp = temp.getConfig(p);
 		}
 		return temp;
+	}
+	
+	public Config mergeConfig(final String path) {
+		return this.config.withFallback(loadConfig(path));
+	}
+	
+	public Config mergeConfig(final Config config) {
+		return this.config.withFallback(config);
 	}
 }

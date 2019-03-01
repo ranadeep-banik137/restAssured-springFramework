@@ -11,6 +11,7 @@ import com.epam.api.automation.configurations.URIParameters;
 import com.epam.api.automation.utils.ConfigUtil;
 
 import io.restassured.RestAssured;
+import io.restassured.module.jsv.JsonSchemaValidator;
 
 @Component
 public class RestJob {
@@ -72,6 +73,10 @@ public class RestJob {
 		RestAssured.basePath = getEndpoint().getBasePath();
 		RestAssured.baseURI = getEndpoint().getBaseUri();
 		RestAssured.useRelaxedHTTPSValidation();
+	}
+	
+	public JsonSchemaValidator validateSchemaFromClassPath(final String fileName) {
+		return JsonSchemaValidator.matchesJsonSchemaInClasspath(this.api.getApiName() + "/schemas/" + fileName);
 	}
 
 }

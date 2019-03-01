@@ -49,9 +49,9 @@ public class Test01 {
 	@Test
 	private void testByChangingParamsInRuntime() {
 		PathParams pathParams= restJob.getUriParameters().getPathParams();
-		pathParams.setId("RANADEEPGEN545573");
+		pathParams.setValueOf(com.epam.api.automation.constants.PathParams.ID.toString(), "RANADEEPGEN545573");
 		QueryParams queryParams = restJob.getUriParameters().getQueryParams();
-		queryParams.setOauthToken(RandomStringUtils.randomAscii(50));
+		queryParams.setValueOf(com.epam.api.automation.constants.QueryParams.OAUTH_TOKEN.getQueryParam(), RandomStringUtils.randomAlphanumeric(50));
 		RestAssured.given()
 			.contentType(ContentType.JSON)
 			.headers(restJob.getHeaders().getHeaderMapper())

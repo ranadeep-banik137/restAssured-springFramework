@@ -36,50 +36,36 @@ public class URIParameters {
 	@Component
 	public class PathParams {
 		
-		private String id;
 		Map<String, Object> pathParamMapper;
 		
 		PathParams() {
-			setPathParamMapper(configUtil.fetchMappedData("params.pathParams"));
-			setId(String.valueOf(getPathParamMapper().get(com.epam.api.automation.constants.PathParams.ID.getPathParam())));
+			setPathParamMapper(configUtil.getConfig().hasPath("params.pathParams") ? configUtil.fetchMappedData("params.pathParams") : null);
 		}
 		
 		public void setPathParamMapper(Map<String, Object> pathParamMapper) {
 			this.pathParamMapper = pathParamMapper;
 		}
-
-		public String getId() {
-			return id;
-		}
-
-		public void setId(String id) {
-			this.id = id;
-			this.pathParamMapper.put(com.epam.api.automation.constants.PathParams.ID.getPathParam(), id);
-		}
 		
 		public Map<String, Object> getPathParamMapper() {
 			return this.pathParamMapper;
+		}
+		
+		public Object getValueOf(final String pathParam) {
+			return this.pathParamMapper.get(pathParam);
+		}
+		
+		public Object setValueOf(final String paramKey, final Object value) {
+			return this.pathParamMapper.put(paramKey, value);
 		}
 	}
 	
 	@Component
 	public class QueryParams {
 		
-		private String oauthToken;
 		Map<String, Object> queryParamMapper;
 		
 		QueryParams() {
-			setQueryParamMapper(configUtil.fetchMappedData("params.queryParams"));
-			setOauthToken(String.valueOf(getQueryParamMapper().get(com.epam.api.automation.constants.QueryParams.OAUTH_TOKEN.getQueryParam())));
-		}
-
-		public String getOauthToken() {
-			return oauthToken;
-		}
-
-		public void setOauthToken(String oauthToken) {
-			this.oauthToken = oauthToken;
-			this.queryParamMapper.put(com.epam.api.automation.constants.QueryParams.OAUTH_TOKEN.getQueryParam(), oauthToken);
+			setQueryParamMapper(configUtil.getConfig().hasPath("params.queryParams") ? configUtil.fetchMappedData("params.queryParams") : null);
 		}
 		
 		public void setQueryParamMapper(Map<String, Object> queryParamMapper) {
@@ -89,6 +75,14 @@ public class URIParameters {
 		public Map<String, Object> getQueryParamMapper() {
 			return queryParamMapper;
 		}
+		
+		public Object getValueOf(final String queryParam) {
+			return this.queryParamMapper.get(queryParam);
+		}
+		
+		public Object setValueOf(final String paramKey, final Object value) {
+			return this.queryParamMapper.put(paramKey, value);
+		}
 	}
-
+	
 }

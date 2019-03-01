@@ -1,0 +1,54 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "api-message",
+    "domain",
+    "valid",
+    "recoded-email"
+  ],
+  "properties": {
+    "api-message": {
+      "$id": "#/properties/api-message",
+      "type": "string",
+      "title": "The Api-message Schema",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^(.*)$"
+    },
+    "domain": {
+      "$id": "#/properties/domain",
+      "type": "string",
+      "title": "The Domain Schema",
+      "default": "",
+      "examples": [
+        "yahoo.com"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "valid": {
+      "$id": "#/properties/valid",
+      "type": "boolean",
+      "title": "The Valid Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "recoded-email": {
+      "$id": "#/properties/recoded-email",
+      "type": "string",
+      "title": "The Recoded-email Schema",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

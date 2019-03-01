@@ -69,10 +69,11 @@ public class ConfigUtil {
 	public Config getConfig(final String path) {
 		return this.config.getConfig(path);
 	}
-	
+	 
 	public Config getConfigByPath(final String path) {
 		Config temp = this.config;
-		for (String p : path.split("\\.")) {
+		String[] pathString = path.split("\\.");
+		for (String p : pathString) {
 			temp = temp.getConfig(p);
 		}
 		return temp;

@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="API-Automation-Suite-0.01">
+	<parameter name="api" value="emailValidation"/>
 	<test name="Test_Framework-Basic_Tests">
 		<classes>
 		<class name="com.epam.api.automation.EmailValidationTest"/>

@@ -1,13 +1,16 @@
 package com.epam.api.automation;
 
+import static io.restassured.RestAssured.given;
+
 import org.apache.http.HttpStatus;
-import org.hamcrest.core.*;
+import org.hamcrest.core.Is;
+import org.hamcrest.core.IsEqual;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.epam.api.automation.context.ContextInitiator;
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 public class EmailValidationTest {
@@ -15,16 +18,17 @@ public class EmailValidationTest {
 	
 private RestJob restJob;
 	
+	@Parameters({"api"})
 	@BeforeMethod
-	private void initialize() {
-		restJob = ContextInitiator.initiateContext().getRestJob();
+	private void initialize(final String api) {
+		restJob = ContextInitiator.initiateContext(api).getRestJob();
 		restJob.setBasicRestAssuredConfig();
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	private void successGetCall() {
-		RestAssured.given()
+		given()
 			.contentType(ContentType.JSON)
 			.headers(restJob.getHeaders().getHeaderMapper())
 			.queryParams(restJob.getUriParameters().getQueryParams().getQueryParamMapper())
@@ -45,8 +49,8 @@ private RestJob restJob;
 	
 	@Test
 	private void successGetCallWithOtherValidEmail() {
-		restJob.getUriParameters().getQueryParams().setValueOf("email", restJob.getConfigUtil().getConfigByPath("test.valid").getString("email"));
-		RestAssured.given()
+		restJob.getUriParameters().getQueryParams().setValueOf("email", restJob.getConfigUtil().getConfigByPath("testData.valid").getString("email"));
+		given()
 			.contentType(ContentType.JSON)
 			.headers(restJob.getHeaders().getHeaderMapper())
 			.queryParams(restJob.getUriParameters().getQueryParams().getQueryParamMapper())
@@ -66,8 +70,8 @@ private RestJob restJob;
 	
 	@Test
 	private void testGetCallWithInvalidEmail() {
-		restJob.getUriParameters().getQueryParams().setValueOf("email", restJob.getConfigUtil().getConfigByPath("test.invalid").getAnyRef("email"));
-		RestAssured.given()
+		restJob.getUriParameters().getQueryParams().setValueOf("email", restJob.getConfigUtil().getConfigByPath("testData.invalid").getAnyRef("email"));
+		given()
 			.contentType(ContentType.JSON)
 			.headers(restJob.getHeaders().getHeaderMapper())
 			.queryParams(restJob.getUriParameters().getQueryParams().getQueryParamMapper())

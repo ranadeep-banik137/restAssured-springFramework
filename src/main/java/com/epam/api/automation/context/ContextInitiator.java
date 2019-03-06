@@ -24,6 +24,11 @@ public class ContextInitiator {
 		return new ContextInitiator();
 	}
 	
+	public static ContextInitiator initiateContext(final String parametirizedApiName) {
+		System.setProperty("api", parametirizedApiName);
+		return initiateContext();
+	}
+	
 	public ApplicationContext getContext() {
 		return context;
 	}

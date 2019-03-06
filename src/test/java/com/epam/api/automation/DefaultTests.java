@@ -17,7 +17,7 @@ import com.jayway.jsonpath.DocumentContext;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class Test01 {
+public class DefaultTests {
 
 	private RestJob restJob;
 	
